@@ -1,0 +1,39 @@
+.toolbarContainer {
+    padding: 20px 20px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.calendarNavButton {
+    padding: 8px;
+    font-size: 1.2em;
+    font-weight: 300;
+    border: black 1px solid;
+    border-radius: 30px;
+    cursor: pointer;
+}
+
+.dateIndicator {
+    font-weight: bold;
+    font-size: 1.5em;
+}
+
+.rbc-allday-cell {
+    display: none;
+}
+
+.rbc-header {
+    white-space: pre-wrap;
+}
+
+.weekHeader {
+    overflow: none;
+    display: block;
+}
+
+.monthEventWrapper,
+.monthEventWrapper > * {
+    display: none;
+    overflow: hidden;
+}

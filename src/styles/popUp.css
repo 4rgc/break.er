@@ -1,0 +1,111 @@
+.modal {
+    z-index: 10;
+    position: fixed !important;
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.25);
+}
+
+.gridContainer {
+    width: 80%;
+    max-width: 800px;
+}
+
+.closeContainer {
+    grid-area: close;
+}
+
+.eventTitleContainer {
+    display: flex;
+    flex: 1;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    grid-area: eventTitle;
+}
+
+.startTimeContainer {
+    display: flex;
+    flex: 1;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    width: 100%;
+    grid-area: startTime;
+}
+
+.endTimeContainer {
+    display: flex;
+    flex: 1;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    width: 100%;
+    grid-area: endTime;
+}
+
+.breakableContainer {
+    display: flex;
+    text-align: left;
+    align-items: center;
+    grid-area: breakable;
+}
+
+.isABreakContainer {
+    display: flex;
+    text-align: left;
+    align-items: center;
+    grid-area: isABreak;
+}
+
+/* TODO: Make the popup resize correctly with css grid */
+
+.modalContent {
+    display: grid;
+    grid-template:
+        "     .       close   " 50px
+        "eventTitle eventTitle" 80px
+        "     .          .    " 20px
+        " startTime   endTime " 50px
+        "     .          .    " 20px
+        " breakable      .    " 50px
+        "     .          .    " 10px
+        "  isABreak      .    " 50px
+        "     .          .    " 20px;
+    background-color: white;
+    padding: 20px;
+    border-radius: 5px;
+    border: 2px solid black;
+}
+
+.close {
+    color: Black;
+    float: right;
+}
+
+.close:hover {
+    color: red;
+    cursor: pointer;
+}
+
+.nameInput {
+    font-size: 4vw;
+}
+
+input[type="checkbox"] {
+    width: 25px;
+    height: 25px;
+}
+
+@media screen and (min-width: 1000px) {
+    .titleInput {
+        font-size: 2.5em;
+    }
+}

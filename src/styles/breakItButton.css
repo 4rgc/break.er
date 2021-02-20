@@ -1,0 +1,11 @@
+.breakItButton {
+    font-size: 2em;
+    font-weight: 300;
+    padding: 8px;
+    border: 3px solid grey;
+    border-radius: 25px;
+    color: navy;
+    background-image: url(../gradient.png);
+    background-size: cover;
+    cursor: pointer;
+}
