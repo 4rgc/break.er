@@ -1,6 +1,5 @@
 import { useState } from "react";
 import "../styles/popUp.css";
-import { CirclePicker, GithubPicker } from "react-color";
 import ColorDropdown from "./colorDropdown";
 import moment from "moment";
 

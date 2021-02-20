@@ -1,6 +1,5 @@
-import React, { Component, useState } from "react";
-import { Calendar, Views, momentLocalizer, TimeGrid } from "react-big-calendar";
-import DateHeader from "react-big-calendar/lib/DateHeader";
+import React, { Component } from "react";
+import { Calendar, Views, momentLocalizer } from "react-big-calendar";
 import "react-big-calendar/lib/css/react-big-calendar.css";
 import withDragAndDrop from "react-big-calendar/lib/addons/dragAndDrop";
 import "react-big-calendar/lib/addons/dragAndDrop/styles.scss";
@@ -17,11 +16,11 @@ const MyToolbar = (props) => {
                 Previous
             </span>
             <span class="dateIndicator">
-                {props.mode == "d"
+                {props.mode === "d"
                     ? moment(props.date).format("MMM DD, YYYY")
-                    : props.mode == "w"
+                    : props.mode === "w"
                     ? "Week of " + moment(props.date).format("MMM DD, YYYY")
-                    : props.mode == "M"
+                    : props.mode === "M"
                     ? moment(props.date).format("MMMM")
                     : ""}
             </span>
@@ -153,16 +152,8 @@ class Dnd extends Component {
     moveEvent = ({ event, start, end, isAllDay: droppedOnAllDaySlot }) => {
         const { events } = this.state;
 
-        let allDay = event.allDay;
-
-        if (!event.allDay && droppedOnAllDaySlot) {
-            allDay = true;
-        } else if (event.allDay && !droppedOnAllDaySlot) {
-            allDay = false;
-        }
-
         const nextEvents = events.map((existingEvent) => {
-            return existingEvent.id == event.id
+            return existingEvent.id === event.id
                 ? { ...existingEvent, start, end }
                 : existingEvent;
         });
@@ -180,7 +171,7 @@ class Dnd extends Component {
         const { events } = this.state;
 
         const nextEvents = events.map((existingEvent) => {
-            return existingEvent.id == event.id
+            return existingEvent.id === event.id
                 ? { ...existingEvent, start, end }
                 : existingEvent;
         });
@@ -238,6 +229,7 @@ class Dnd extends Component {
                     moment(event.end)
                 )
         );
+        return overlaps.length > 0;
     }
 
     eventStyleGetter(event, start, end, isSelected) {

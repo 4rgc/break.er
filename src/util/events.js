@@ -1,6 +1,4 @@
-const now = new Date();
-
-export default [
+const events = [
     {
         id: 0,
         title: "Wake up",
@@ -83,3 +81,5 @@ export default [
         color: "#008b02",
     },
 ];
+
+export default events;

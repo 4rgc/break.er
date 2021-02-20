@@ -26,7 +26,7 @@ const ColorDropdown = (props) => {
 
     const handleChangeComplete = (color) => {
         const index = colors.findIndex(
-            (el) => el.toLowerCase() == color.hex.toLowerCase()
+            (el) => el.toLowerCase() === color.hex.toLowerCase()
         );
         setSelectedColorIndex(index);
         props.onColorSelected(color.hex);
