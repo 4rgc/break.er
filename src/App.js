@@ -12,15 +12,42 @@ function App() {
     const [date, setDate] = useState(new Date());
     const [events, setEvents] = useState(presetEvents);
 
-    const breakingNeeded = (breakDate) => {
+    const insertionNeeded = (breakDate) => {
         let sameDateEvents = events.filter((ev) =>
             moment(breakDate).isSame(moment(ev.start), "day")
         );
 
         sameDateEvents.sort((e1, e2) =>
-            moment(e1.start).isBefore(moment(e2.start) ? -1 : 1)
-        ); // first work event
-        return false;
+            moment(e1.start).isBefore(moment(e2.start)) ? -1 : 1
+        );
+        let workStarted = null,
+            workEnded = null;
+        let breakNeeded = false;
+        sameDateEvents.forEach((element) => {
+            if (!element.isABreak) {
+                if (!workStarted) {
+                    workStarted = moment(element.start);
+                    workEnded = moment(element.end);
+                } else {
+                    if (workEnded.isSame(moment(element.start)))
+                        workEnded = moment(element.end);
+                    else {
+                        workStarted = moment(element.start);
+                        workEnded = moment(element.end);
+                    }
+                }
+            } else {
+                if (workStarted) {
+                    let workLength = workEnded.diff(workStarted, "hours", true);
+                    if (workLength > 1.5) {
+                        breakNeeded = true;
+                        return;
+                    }
+                    workStarted = workEnded = null;
+                }
+            }
+        }); // first work event
+        return breakNeeded;
     };
 
     return (
@@ -65,7 +92,7 @@ function App() {
                     <BreakItButton
                         onClick={() => {
                             if (modeSelected === "d") {
-                                if (breakingNeeded(date)) {
+                                if (insertionNeeded(date)) {
                                     console.log("inserted breaks");
                                 } else {
                                     console.log("all good");
